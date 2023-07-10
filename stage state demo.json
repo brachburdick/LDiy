@@ -1,0 +1,639 @@
+{
+    "_UTIL_": {
+        "type": "util",
+        "id": {
+            "deviceID": "u_000"
+        },
+        "general": {
+            "groupCount": 1,
+            "fixtureCount": 4,
+            "projectorCount": 1,
+            "selected": "",
+            "prevSelected": "",
+            "stageX": 600,
+            "stageY": 300,
+            "stageZ": 600,
+            "activeProjectors": "projector0",
+            "globalChannels": "",
+            "fixtureLibIDs": "",
+            "GCBreakdown": "fixture0_r fixture0_g fixture0_b fixture0_w fixture0_md fixture0_s fixture1_r fixture1_g fixture1_b fixture1_w fixture1_md fixture1_s fixture2_r fixture2_g fixture2_b fixture2_w fixture2_md fixture2_s fixture3_r fixture3_g fixture3_b fixture3_w fixture3_md fixture3_s fixture4_r fixture4_g fixture4_b fixture4_w fixture4_md fixture4_s fixture5_r fixture5_g fixture5_b fixture5_w fixture5_md fixture5_s ",
+            "selectedType": ""
+        }
+    },
+    "_STAGE_": {
+        "type": "util",
+        "id": {
+            "deviceID": "u_001"
+        },
+        "general": {
+            "tx": 600,
+            "ty": 300,
+            "tz": 600,
+            "rx": 0,
+            "ry": 0,
+            "rz": 0,
+            "sx": 1,
+            "sy": 1,
+            "sz": 1
+        }
+    },
+    "_VIEWERCAMERA_": {
+        "type": "util",
+        "id": {
+            "deviceID": "u_002"
+        },
+        "general": {
+            "tx": 0,
+            "ty": 0,
+            "tz": 0,
+            "rx": 0,
+            "ry": 0,
+            "rz": 0,
+            "sx": 1,
+            "sy": 1,
+            "sz": 1
+        }
+    },
+    "_VIEWERLIGHT_": {
+        "type": "util",
+        "id": {
+            "deviceID": "u_003"
+        },
+        "general": {
+            "tx": 0,
+            "ty": 0,
+            "tz": 0,
+            "rx": 0,
+            "ry": 0,
+            "rz": 0,
+            "sx": 1,
+            "sy": 1,
+            "sz": 1
+        }
+    },
+    "fixture0": {
+        "type": "fixture",
+        "id": {
+            "deviceID": 1001,
+            "fixtureLibraryID": "f_001"
+        },
+        "general": {
+            "name": "fixture0",
+            "tx": -84,
+            "ty": 0,
+            "tz": 0,
+            "rx": 0,
+            "ry": 0,
+            "rz": 0,
+            "sx": 1,
+            "sy": 1,
+            "sz": 1,
+            "uniformScale": 1,
+            "visible": true,
+            "locked": false
+        },
+        "gcRouting": {
+            "0": "r",
+            "1": "g",
+            "2": "b",
+            "3": "a"
+        },
+        "address": {
+            "channel": 1,
+            "universe": 1
+        },
+        "relationships": {
+            "parents": "",
+            "children": ""
+        }
+    },
+    "group0": {
+        "type": "group",
+        "id": {
+            "deviceID": "1001"
+        },
+        "general": {
+            "name": "group0",
+            "tx": 0,
+            "ty": 0,
+            "tz": 0,
+            "rx": 0,
+            "ry": 0,
+            "rz": 0,
+            "sx": 1,
+            "sy": 1,
+            "sz": 1,
+            "uniformScale": 1,
+            "visible": true,
+            "locked": false
+        },
+        "relationships": {
+            "parents": "",
+            "children": "fixture0"
+        }
+    },
+    "projector0": {
+        "type": "projector",
+        "id": {
+            "deviceID": 1001,
+            "projectorLibraryID": "p_001"
+        },
+        "general": {
+            "name": "projector0",
+            "tx": 0,
+            "ty": 0,
+            "tz": 0,
+            "rx": 0,
+            "ry": 0,
+            "rz": 0,
+            "sx": 1,
+            "sy": 1,
+            "sz": 1,
+            "uniformScale": 1,
+            "visible": true,
+            "locked": false
+        },
+        "gcRouting": {
+            "0": "r",
+            "1": "g",
+            "2": "b",
+            "3": "a"
+        },
+        "address": {
+            "channel": 1,
+            "unvierse": 1
+        },
+        "relationships": {
+            "macros": "m_004",
+            "fixtures": "fixture0 fixture1 fixture2 fixture3 fixture4 fixture5 fixture6 fixture7 mover0 mover1 mover2 mover3"
+        }
+    },
+    "fixture1": {
+        "type": "fixture",
+        "id": {
+            "deviceID": "1001",
+            "fixtureLibraryID": "f_001"
+        },
+        "general": {
+            "name": "fixture1",
+            "tx": -60.0,
+            "ty": 20.0,
+            "tz": 0.0,
+            "rx": 0.0,
+            "ry": 0.0,
+            "rz": 0.0,
+            "sx": 1.0,
+            "sy": 1.0,
+            "sz": 1.0,
+            "uniformScale": 1.0,
+            "visible": true,
+            "locked": false
+        },
+        "gcRouting": {
+            "0": "r",
+            "1": "g",
+            "2": "b",
+            "3": "a"
+        },
+        "address": {
+            "channel": 9,
+            "universe": 1
+        },
+        "relationships": {
+            "parents": "",
+            "children": ""
+        }
+    },
+    "fixture2": {
+        "type": "fixture",
+        "id": {
+            "deviceID": "1001",
+            "fixtureLibraryID": "f_001"
+        },
+        "general": {
+            "name": "fixture2",
+            "tx": -36.0,
+            "ty": 30.0,
+            "tz": 0.0,
+            "rx": 0.0,
+            "ry": 0.0,
+            "rz": 0.0,
+            "sx": 1.0,
+            "sy": 1.0,
+            "sz": 1.0,
+            "uniformScale": 1.0,
+            "visible": true,
+            "locked": false
+        },
+        "gcRouting": {
+            "0": "r",
+            "1": "g",
+            "2": "b",
+            "3": "a"
+        },
+        "address": {
+            "channel": 17,
+            "universe": 1
+        },
+        "relationships": {
+            "parents": "",
+            "children": ""
+        }
+    },
+    "fixture3": {
+        "type": "fixture",
+        "id": {
+            "deviceID": "1001",
+            "fixtureLibraryID": "f_001"
+        },
+        "general": {
+            "name": "fixture3",
+            "tx": -12.0,
+            "ty": 35.0,
+            "tz": 0.0,
+            "rx": 0.0,
+            "ry": 0.0,
+            "rz": 0.0,
+            "sx": 1.0,
+            "sy": 1.0,
+            "sz": 1.0,
+            "uniformScale": 1.0,
+            "visible": true,
+            "locked": false
+        },
+        "gcRouting": {
+            "0": "r",
+            "1": "g",
+            "2": "b",
+            "3": "a"
+        },
+        "address": {
+            "channel": 25,
+            "universe": 1
+        },
+        "relationships": {
+            "parents": "",
+            "children": ""
+        }
+    },
+    "fixture4": {
+        "type": "fixture",
+        "id": {
+            "deviceID": "1001",
+            "fixtureLibraryID": "f_001"
+        },
+        "general": {
+            "name": "fixture4",
+            "tx": 12.0,
+            "ty": 35.0,
+            "tz": 0.0,
+            "rx": 0.0,
+            "ry": 0.0,
+            "rz": 0.0,
+            "sx": 1.0,
+            "sy": 1.0,
+            "sz": 1.0,
+            "uniformScale": 1.0,
+            "visible": true,
+            "locked": false
+        },
+        "gcRouting": {
+            "0": "r",
+            "1": "g",
+            "2": "b",
+            "3": "a"
+        },
+        "address": {
+            "channel": 33,
+            "universe": 1
+        },
+        "relationships": {
+            "parents": "",
+            "children": ""
+        }
+    },
+    "fixture5": {
+        "type": "fixture",
+        "id": {
+            "deviceID": "1001",
+            "fixtureLibraryID": "f_001"
+        },
+        "general": {
+            "name": "fixture5",
+            "tx": 36.0,
+            "ty": 30.0,
+            "tz": 0.0,
+            "rx": 0.0,
+            "ry": 0.0,
+            "rz": 0.0,
+            "sx": 1.0,
+            "sy": 1.0,
+            "sz": 1.0,
+            "uniformScale": 1.0,
+            "visible": true,
+            "locked": false
+        },
+        "gcRouting": {
+            "0": "r",
+            "1": "g",
+            "2": "b",
+            "3": "a"
+        },
+        "address": {
+            "channel": 41,
+            "universe": 1
+        },
+        "relationships": {
+            "parents": "",
+            "children": ""
+        }
+    },
+    "fixture6": {
+        "type": "fixture",
+        "id": {
+            "deviceID": "1001",
+            "fixtureLibraryID": "f_001"
+        },
+        "general": {
+            "name": "fixture6",
+            "tx": 60.0,
+            "ty": 20.0,
+            "tz": 0.0,
+            "rx": 0.0,
+            "ry": 0.0,
+            "rz": 0.0,
+            "sx": 1.0,
+            "sy": 1.0,
+            "sz": 1.0,
+            "uniformScale": 1.0,
+            "visible": true,
+            "locked": false
+        },
+        "gcRouting": {
+            "0": "r",
+            "1": "g",
+            "2": "b",
+            "3": "a"
+        },
+        "address": {
+            "channel": 49,
+            "universe": 1
+        },
+        "relationships": {
+            "parents": "",
+            "children": ""
+        }
+    },
+    "fixture7": {
+        "type": "fixture",
+        "id": {
+            "deviceID": "1001",
+            "fixtureLibraryID": "f_001"
+        },
+        "general": {
+            "name": "fixture7",
+            "tx": 84.0,
+            "ty": 0.0,
+            "tz": 0.0,
+            "rx": 0.0,
+            "ry": 0.0,
+            "rz": 0.0,
+            "sx": 1.0,
+            "sy": 1.0,
+            "sz": 1.0,
+            "uniformScale": 1.0,
+            "visible": true,
+            "locked": false
+        },
+        "gcRouting": {
+            "0": "r",
+            "1": "g",
+            "2": "b",
+            "3": "a"
+        },
+        "address": {
+            "channel": 57,
+            "universe": 1
+        },
+        "relationships": {
+            "parents": "",
+            "children": ""
+        }
+    },
+    "projector1": {
+        "type": "projector",
+        "id": {
+            "deviceID": 1001,
+            "projectorLibraryID": "p_001"
+        },
+        "general": {
+            "name": "projector1",
+            "tx": 0,
+            "ty": 0,
+            "tz": 0,
+            "rx": 0,
+            "ry": 0,
+            "rz": 0,
+            "sx": 1,
+            "sy": 1,
+            "sz": 1,
+            "uniformScale": 1,
+            "visible": true,
+            "locked": false
+        },
+        "gcRouting": {
+            "0": "md",
+            "1": "s",
+            "2": "",
+            "3": ""
+        },
+        "address": {
+            "channel": 1,
+            "unvierse": 1
+        },
+        "relationships": {
+            "macros": "m_003",
+            "fixtures": "fixture0 fixture1 fixture2 fixture3 fixture4 fixture5 fixture6 fixture7 mover0 mover1 mover2 mover3"
+        }
+    },
+    "mover0": {
+        "type": "fixture",
+        "id": {
+            "deviceID": "1001",
+            "fixtureLibraryID": "f_002"
+        },
+        "general": {
+            "name": "mover0",
+            "tx": -100.0,
+            "ty": 55.0,
+            "tz": 0.0,
+            "rx": 0.0,
+            "ry": 0.0,
+            "rz": 0.0,
+            "sx": 1.0,
+            "sy": 1.0,
+            "sz": 1.0,
+            "uniformScale": 1.0,
+            "visible": true,
+            "locked": false
+        },
+        "gcRouting": {
+            "0": "r",
+            "1": "g",
+            "2": "b",
+            "3": "a"
+        },
+        "address": {
+            "channel": 65,
+            "universe": 1
+        },
+        "relationships": {
+            "parents": "",
+            "children": ""
+        }
+    },
+    "mover1": {
+        "type": "fixture",
+        "id": {
+            "deviceID": "1001",
+            "fixtureLibraryID": "f_002"
+        },
+        "general": {
+            "name": "mover1",
+            "tx": -35.0,
+            "ty": 75.0,
+            "tz": 0.0,
+            "rx": 0.0,
+            "ry": 0.0,
+            "rz": 0.0,
+            "sx": 1.0,
+            "sy": 1.0,
+            "sz": 1.0,
+            "uniformScale": 1.0,
+            "visible": true,
+            "locked": false
+        },
+        "gcRouting": {
+            "0": "r",
+            "1": "g",
+            "2": "b",
+            "3": "a"
+        },
+        "address": {
+            "channel": 82,
+            "universe": 1
+        },
+        "relationships": {
+            "parents": "",
+            "children": ""
+        }
+    },
+    "mover2": {
+        "type": "fixture",
+        "id": {
+            "deviceID": "1001",
+            "fixtureLibraryID": "f_002"
+        },
+        "general": {
+            "name": "mover2",
+            "tx": 35.0,
+            "ty": 75.0,
+            "tz": 0.0,
+            "rx": 0.0,
+            "ry": 0.0,
+            "rz": 0.0,
+            "sx": 1.0,
+            "sy": 1.0,
+            "sz": 1.0,
+            "uniformScale": 1.0,
+            "visible": true,
+            "locked": false
+        },
+        "gcRouting": {
+            "0": "r",
+            "1": "g",
+            "2": "b",
+            "3": "a"
+        },
+        "address": {
+            "channel": 99,
+            "universe": 1
+        },
+        "relationships": {
+            "parents": "",
+            "children": ""
+        }
+    },
+    "mover3": {
+        "type": "fixture",
+        "id": {
+            "deviceID": "1001",
+            "fixtureLibraryID": "f_002"
+        },
+        "general": {
+            "name": "mover3",
+            "tx": 100.0,
+            "ty": 55.0,
+            "tz": 0.0,
+            "rx": 0.0,
+            "ry": 0.0,
+            "rz": 0.0,
+            "sx": 1.0,
+            "sy": 1.0,
+            "sz": 1.0,
+            "uniformScale": 1.0,
+            "visible": true,
+            "locked": false
+        },
+        "gcRouting": {
+            "0": "r",
+            "1": "g",
+            "2": "b",
+            "3": "a"
+        },
+        "address": {
+            "channel": 116,
+            "universe": 1
+        },
+        "relationships": {
+            "parents": "",
+            "children": ""
+        }
+    },
+    "ProjectorPT": {
+        "type": "projector",
+        "id": {
+            "deviceID": "1001",
+            "projectorLibraryID": "p_001"
+        },
+        "general": {
+            "name": "ProjectorPT",
+            "tx": 0.0,
+            "ty": 0.0,
+            "tz": 0.0,
+            "rx": 0.0,
+            "ry": 0.0,
+            "rz": 0.0,
+            "sx": 1.0,
+            "sy": 1.0,
+            "sz": 1.0,
+            "uniformScale": 1.0,
+            "visible": true,
+            "locked": false
+        },
+        "gcRouting": {
+            "0": "pan",
+            "1": "tilt",
+            "2": "",
+            "3": ""
+        },
+        "address": {
+            "channel": 1,
+            "universe": 1
+        },
+        "relationships": {
+            "macros": "m_008",
+            "fixtures": "mover0 mover1 mover2 mover3"
+        }
+    }
+}
