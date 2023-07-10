@@ -5,7 +5,7 @@ Intuitive, accessible, and hardware agnostic.
 Inspired by EnviralDesign's GeoPix and OpenLightingFixtures.
 A 12South Entertainment product.
 
-# The Basics
+
 # The Vision
 Bringing scenes to life on a stage should be as simple as describing them. 
 This software provides a unified, agnostic method of providing instructions to stage hardware on any scale/configuration. When implemented, most hardware takes advantage of only a fraction of the functionality provided by the manufacturer, and the functionality sought after by designers is shared across nearly all hardware. 
