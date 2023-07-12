@@ -1,0 +1,4 @@
+
+def selectionUpdate(selectionPath, selectionName):
+    op('stageCont/Util')['selected', 'stageData'] = selectionName
+    return
