@@ -1,0 +1,191 @@
+
+{
+      "objects":{
+            "_STAGE_": {
+                  "type": "util",
+                  "id":{
+                        "deviceID":"u_001"
+                  },
+                  "attributes":{
+                        "general":{  
+                              "tx":0,
+                              "ty":0,
+                              "tz":0,
+                              "rx":0,
+                              "ry":0,
+                              "rz":0,
+                              "sx":1,
+                              "sy":1,
+                              "sz":1
+                        }
+                  }
+            },
+            "_VIEWERCAMERA_":{
+                  "type": "util",
+                  "id":{
+                        "deviceID":"u_002"
+                  },
+                  "attributes":{
+                        "general":{  
+                              "tx":0,
+                              "ty":0,
+                              "tz":0,
+                              "rx":0,
+                              "ry":0,
+                              "rz":0,
+                              "sx":1,
+                              "sy":1,
+                              "sz":1
+                        }
+                  }
+            
+
+            },
+            "_VIEWERLIGHT_":{
+                  "type": "util",
+                  "id":{
+                        "deviceID":"u_003"
+                  },
+                  "attributes":{
+                        "general":{  
+                              "tx":0,
+                              "ty":0,
+                              "tz":0,
+                              "rx":0,
+                              "ry":0,
+                              "rz":0,
+                              "sx":1,
+                              "sy":1,
+                              "sz":1
+                        }
+                  }
+            
+
+            },
+            "fixture0":{
+                  "type": "fixture",
+                  "id":{
+                        "deviceID":1001,
+                        "fixtureLibraryID": "fd_001"
+                  },
+                  "attributes":{
+                        "general":{  
+                              "tx":0,
+                              "ty":0,
+                              "tz":0,
+                              "rx":0,
+                              "ry":0,
+                              "rz":0,
+                              "sx":1,
+                              "sy":1,
+                              "sz":1,
+                              "uniform_scale": 1,
+                              "visible":true,
+                              "locked":false
+                        },
+                        "gc_routing":{
+                              "0":"r",
+                              "1":"g",
+                              "2":"b",
+                              "3":"etc"
+                        },
+                        "address":{
+                              "channel":1,
+                              "unvierse":1
+                        },
+                        "relationships":{
+
+                        }
+                  }
+            
+
+            },
+            "group0":{
+                  "type": "group",
+                  "id":{
+                        "deviceID":1001
+                  },
+                  "attributes":{
+                        "general":{  
+                              "tx":0,
+                              "ty":0,
+                              "tz":0,
+                              "rx":0,
+                              "ry":0,
+                              "rz":0,
+                              "sx":1,
+                              "sy":1,
+                              "sz":1,
+                              "uniform_scale": 1,
+                              "visible":true,
+                              "locked":false
+                        },
+                        "relationships":{
+                              "parents": "",
+                              "children": "fixture0 fixture1 fixture2"
+                        }
+
+                  }
+            },
+            "projector0":{
+                  "type": "projector",
+                  "id":{
+                        "deviceID":1001,
+                        "projectorLibraryID": "p_001"
+                  },
+                  "general":{  
+                        "tx":0,
+                        "ty":0,
+                        "tz":0,
+                        "rx":0,
+                        "ry":0,
+                        "rz":0,
+                        "sx":1,
+                        "sy":1,
+                        "sz":1,
+                        "uniform_scale": 1,
+                        "visible":true,
+                        "locked":false
+                  },
+                  "gc_routing":{
+                        "r":"r",
+                        "g":"g",
+                        "b":"b",
+                        "a":"a"
+                  },
+                  "address":{
+                        "channel":1,
+                        "unvierse":1
+                  },
+                  "relationships":{
+                        "parents": "",
+                        "children": "fixture0 fixture1 fixture2"
+                  }
+            },
+            "geometry0":{
+                  "type": "geometry",
+                  "id":{
+                        "deviceID":1001,
+                        "geometryLibraryID": "g_001"
+                  },
+                  "general":{  
+                        "tx":0,
+                        "ty":0,
+                        "tz":0,
+                        "rx":0,
+                        "ry":0,
+                        "rz":0,
+                        "sx":1,
+                        "sy":1,
+                        "sz":1,
+                        "uniform_scale": 1,
+                        "visible":true,
+                        "locked":false
+                  },
+                  "relationships":{
+                        "parents": "",
+                        "children": ""
+                  }
+            }
+      }
+}

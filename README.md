@@ -27,6 +27,10 @@ Each class of stage object has a library. The json documents in these libraries 
 # TouchDesigner:
 Current version of the application runs on TouchDesigner v2021.16410.<br>
 
+
+![image](https://github.com/brachburdick/LDiy/assets/107267496/a56dfd0d-c672-4591-9344-4e28410eb480)
+
+
 # Related Links:
 https://12southband.com/<br>
 https://github.com/EnviralDesign/GeoPix<br>

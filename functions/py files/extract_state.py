@@ -5,14 +5,16 @@ fixture_table = op('/project1/stage/fixture_state')
 fixture_library = op('/project1/stage/fixtureLibrary/fixtureLibTable')
 util_table = op('/project1/stage/util_state')
 projector_table = op('/project1/stage/projector_state')
-macro_library = op('/project1/workshop/macroLibrary/macroLibraryTable')
+macro_library_table = op('/project1/workshop/macroLibrary/macroLibraryTable')
+macroLib =  op('/project1/workshop/macroLibrary')
 GCtoDMX_table = op('/project1/stage/fixtureGCtoDMX')
 chanNames_table = op('/project1/stage/DMXChannelNames')
+dmxChannelsPre_chop =  op('/project1/stage/DMXChannelsPre')
 GCRef = op('/project1/stage/GCRef')
 fixture_GC = op('/project1/stage/fixtures_GC')
 fixturePixelEvals = op('/project1/stage/fixturePixelEvals')
 TL_table = op('/project1/stage/treeListerHeirarchy')
-macro_ref_pf = "op('/project1/workshop/macroLibrary"
+macro_ref_pf = "op('/project1/workshop/macroLibrary/"
 renderVal_table = op('/project1/stage/renderVals')
 GCtoRender_table = op('/project1/stage/GCtoRender')
 GCtoRender_eval = op('/project1/stage/GCtoRender_eval')
@@ -76,7 +78,9 @@ def processFixtureLibraryIDs():
     #OBTAIN ALL FIXTURELIBIDs AND ALL GC FROM UTILSTATE
     #THIS WILL ALLOW US TO UPDATE THEM IF NECESSARY - LIKE IF WE ADD/REMOVE STUFF
     US_FLIDs = util_table['general_fixtureLibIDs','_UTIL_'].val.split(" ")
+    
     US_FLIDs = [x for x in US_FLIDs if x != ""]
+   
     US_GCs = util_table['general_globalChannels','_UTIL_'].val.split(" ")
     US_GCs = [x for x in US_GCs if x != ""]
     
@@ -92,6 +96,7 @@ def processFixtureLibraryIDs():
         # GRAB DMX ADDRESS & LIBRARYid FROM FIXTURE STATE
         fName = fixture.val
         fLID = fixture_table['id_fixtureLibraryID',fName].val
+        
         fAddress = fixture_table['address_channel',fName].val
         
         # error handler in case fLID isn't in library
@@ -116,6 +121,7 @@ def processFixtureLibraryIDs():
             #Update the utility state accordingly
             util_table['general_globalChannels', '_UTIL_'] = " ".join(fGCs)
             util_table['general_fixtureLibIDs', '_UTIL_'] = str(fLID)
+            
            
             #now that we've updated state, let's update our variables
             US_GCs = util_table['general_globalChannels', '_UTIL_'].val.split(" ")
@@ -126,14 +132,16 @@ def processFixtureLibraryIDs():
             #clear the fixture gc -> dmx mapping table and set it up again. 
             GCtoDMX_table.clear()
             GCtoRender_table.clear()
+            chanNames_table.clear()
             GCtoDMX_table.appendCol(['GCstoDMX', *US_GCs]) #adding labels
             GCtoRender_table.appendCol(["'GCstoDMX'", *["'"+gc+"'" for gc in US_GCs]])
             GCtoDMX_table.appendCol([fName, *fGCtoDMX ])
             GCtoRender_table.appendCol(["'"+fName+"'" ])
 
             #do the same for the dmx channel names
-            chanNames_table.clear()
-            chanNames_table.appendCol(['channelName',*[0]*255])
+            
+            chanNames_table.appendCol(['channelName',*['empty']*255])
+
             chanNames_table.appendCol(["'Values'"])
 
             for index,name in enumerate(fGCNames):
@@ -148,16 +156,23 @@ def processFixtureLibraryIDs():
         elif (len(US_FLIDs) != 0 and len(US_GCs) != 0): 
             #NOW DIFF THE LID OF THIS FIXTURE & US TO DTMN IF WE HAVE ANY NEW FIXTURE IDs
             if fLID not in US_FLIDs:
+                
+                #TODO: Fix fixturelibID bug
+                #BUG HERE
                 util_table['general_fixtureLibIDs','_UTIL_'] = " ".join([*US_FLIDs, fLID])
+                #print('line 161'," ".join([*US_FLIDs, fLID]))
 
                 #update any gcs not accounted for
                 newGCs =[x for x in fGCs if x not in US_GCs] 
                 newGCs = [x for x in newGCs if x != ""]
                 if len(newGCs)>0:
                     util_table['general_globalChannels', '_UTIL_'] = " ".join([*US_GCs, *newGCs])
+                    
                     for new in newGCs:
                         GCtoDMX_table.appendRow([new]) 
                         GCtoRender_table.appendRow(["'" + new+ "'"])
+                        US_GCs.append(new)
+
             #MAKE SURE TO UPDATE GCBREAKDOWN AS YOU GO, AND UPDATE UTILSTATE AFTER IF NEEDED.
             
             GCtoDMXFixtures = [cell.val for cell in GCtoDMX_table.row(0)]
@@ -167,7 +182,8 @@ def processFixtureLibraryIDs():
                 for index, gc in enumerate(fGCs):
                     GCtoDMX_table[gc,fName] = int(fGCtoDMX[index])   
                     chanNames_table[fGCtoDMX[index],0] = fGCNames[index]
-    
+        #for index, chan in enumerate(chanNames_table.col(0)[1:]):
+            
     
     return
 
@@ -179,15 +195,26 @@ def processFixtureLibraryIDs():
 
 def extractProjectors():
     #loop through projectors in proj-state
-    tdToxPath = "C:/Program Files/Derivative/TouchDesigner/Samples/Palette/UI/Custom/projectorNode.tox"
+    tdToxPath_projectorNode = "C:/Program Files/Derivative/TouchDesigner/Samples/Palette/UI/Custom/projectorNode.tox"
+    tdToxPath_pixelGen = "C:/Program Files/Derivative/TouchDesigner/Samples/Palette/UI/Custom/pixelGenerator.tox"
+    
     wsNodeCont = op('/project1/workshop/projector_nodes')
     projectors = [cell.val for cell in projector_table.row(0)]
    
+    #destory current ProjectorNodes in WS
     for child in wsNodeCont.children:
         child.destroy()
 
+    #find and destory pixel generators in WS
+    #print("HERE", macroLib.findChildren(tags=['pGenInstance'], depth=1, type=containerCOMP))
+    for child in  macroLib.findChildren(tags=['pGenInstance'], depth=1, type=containerCOMP):
+        #print(child.name + " destroyed")
+        child.destroy()
+        
+    
+
     for proj in projectors[1:]:
-        print(proj)
+        #print(proj)
         pIO0 = projector_table['gcRouting_0',proj].val 
         pIO1 = projector_table['gcRouting_1',proj].val
         pIO2 = projector_table['gcRouting_2',proj].val
@@ -197,11 +224,11 @@ def extractProjectors():
         pMacroRefs = projector_table['relationships_macros', proj].val.split(" ")
         #produce list of operators from list of IDs
         
-        pMacros = [macro_ref_pf + macro_library[x,'operator'] + "')" for x in pMacroRefs]
+        pMacros = [macro_ref_pf + macro_library_table[x,'operator'] + "')" for x in pMacroRefs]
 
 
         #set the nodes in the WS display
-        thisNode = wsNodeCont.loadTox(tdToxPath)
+        thisNode = wsNodeCont.loadTox(tdToxPath_projectorNode)
         thisNode.name = proj + "_node"
         thisNode.par.Leftlabeltext = proj
         thisNode.par.Rightlabeltext = pIO0 + "  |  " +pIO1 + "  |  " + pIO2 + "  |  " + pIO3
@@ -216,73 +243,87 @@ def extractProjectors():
         #print('pMacroRefs', pMacroRefs)
         #print('pMacros', pMacros)
         #for each macro, grab a reference to the appropriate top (for now- in the future we'll reference the channel out)
+        #for each macro, also create a pixel generator
         for mRef in pMacroRefs:
-            macro = macro_ref_pf + macro_library[mRef,'operator'] + "')"
-            print(eval(macro))
-            mOut0 = macro_library[mRef,'map_0'].val
-            mOut1 = macro_library[mRef,'map_1'].val
-            mOut2 = macro_library[mRef,'map_2'].val
-            mOut3 = macro_library[mRef,'map_3'].val
+            macroName = macro_library_table[mRef,'operator'].val
+            
+            macroStr = macro_ref_pf + macro_library_table[mRef,'operator'] + "')"
+            macroOp = op('/project1/workshop/macroLibrary/'+macroName )
+            
+            mOut0 = macro_library_table[mRef,'map_0'].val
+            mOut1 = macro_library_table[mRef,'map_1'].val
+            mOut2 = macro_library_table[mRef,'map_2'].val
+            mOut3 = macro_library_table[mRef,'map_3'].val
             mOuts = [mOut0, mOut1, mOut2, mOut3]
 
-            for index, out in enumerate(mOuts):
-                for fName in pFixtures:
-                    fLID = fixture_table['id_fixtureLibraryID',fName].val
-                    fMap = op('/project1/stage/fixtureLibrary/' + fLID)
-                    fGCs = [cell.val for cell in fMap.col('globalChannel')[1:]]
-                    ftx = int(fixture_table['general_tx', fName])+int(util_table['general_stageX', '_UTIL_']/2)
-                    fty= int(fixture_table['general_ty', fName])+int(util_table['general_stageY', '_UTIL_']/2)
-                    #REMEMBER: .numpyArray expects y value first!
-                    fPos = "[" + str(fty) + "][" + str(ftx) + "]"
-                    
-                    if out in pGCs and out in fGCs:
-                        evaluation =  macro + '.numpyArray(delayed=True)[' + str(fty) + '][' + str(ftx) + '][' + str(index)+']'
-                    
-                        GCtoRender_table["'"+out+"'","'"+fName+"'"] = evaluation
-                        chanNames_table[fName+ "_" + out, "'Values'"] = evaluation
+            #Create new pixelGenerator
+            newPGen = macroLib.loadTox(tdToxPath_pixelGen)
+            newPGen.name = proj + "_" + mRef
+            if util_table['general_pixelGenerators','_UTIL_'] == "":
+                util_table['general_pixelGenerators','_UTIL_'] = proj + '_' + mRef
+            else:
+                util_table['general_pixelGenerators','_UTIL_'] = util_table['general_pixelGenerators','_UTIL_'].val + " " + proj + "_" + mRef
 
-                            
-                        
+            pgSourceTable = op('/project1/workshop/macroLibrary/'+newPGen.name+'/source')
+            pgClone = op('/project1/workshop/macroLibrary/'+newPGen.name+'/cloneThis')
+            
+            #connect pGen to top and to output
+            op(macroOp).outputConnectors[0].connect(newPGen.inputConnectors[0])
+            newPGen.outputConnectors[0].connect(op('/project1/workshop/macroLibrary/consolidateAllMacros'))
 
+            #set up source table labels
+            pgSourceTable.clear()
+            pgClone.par.r = mOut0
+            pgClone.par.g = mOut1
+            pgClone.par.b = mOut2
+            pgClone.par.a = mOut3
+            pgSourceTable.appendRow(['fixtures', *[out for out in mOuts],'ftx','fty'])
+            #source should instantiate w lable row only
+            #for each fixture in our current
+
+            
             for fName in pFixtures:
-                #print(fName)
-                #grab fGC and mGC
-                
+                fpmGCs = []
+                addFixToSource = False
+                #if we havent added this fixture to our source table, do it now
 
                 fLID = fixture_table['id_fixtureLibraryID',fName].val
                 fMap = op('/project1/stage/fixtureLibrary/' + fLID)
                 fGCs = [cell.val for cell in fMap.col('globalChannel')[1:]]
-                # This will need to be redone in the future based on some linear algebra and orientation of the projector
-                # For now we'll stick with xy, and hardcode stuff
-                            #dtmn child's xpos and ypos
-                #tranformed to the ref frame of the stage of course
-                ftx = int(fixture_table['general_tx', fName])+int(util_table['general_stageX', '_UTIL_']/2)
-                fty= int(fixture_table['general_ty', fName])+int(util_table['general_stageY', '_UTIL_']/2)
+                ftx = (int(fixture_table['general_tx', fName])+int(util_table['general_stageX', '_UTIL_']/2))/int(util_table['general_stageX', '_UTIL_'])
+                fty= (int(fixture_table['general_ty', fName])+int(util_table['general_stageY', '_UTIL_']/2))/int(util_table['general_stageY', '_UTIL_'])
                 #REMEMBER: .numpyArray expects y value first!
                 fPos = "[" + str(fty) + "][" + str(ftx) + "]"
-                
-                print(fGCs)
-                print(ftx,fty)
-                #take intersection
-                intersection = [x for x in pGCs if x in fGCs]
-                print(intersection)
-                #fLookupStatements = op('/project1/stage/projectorLibrary' + ).numpyArray(delayed=True)[ftx][fty]
-               
-                for gc in intersection:
-                    ###for gc in theseGC:
-                    evaluation =  macro + '.numpyArray(delayed=True)[' + str(fty) + '][' + str(ftx) + ']'
-                    print(evaluation)
-                    #renderVals_table.appendRow(["'" + fName  + "'",evaluation])
+                for index, out in enumerate(mOuts):
 
-                    #calculate formula for pixel @ arg = this each
-                    #add to GCtoRender table at [gc,fixture]
-                    ####GCtoRender_table[gc,fix] = mOpRef.selectPixel(fLookupVals,gc)
+                    #This is incorrect and will lead to bugs
+                    #TODO: FIX
+                    #we need to check for the fGs that are IN our pGCs, not all of both. This is not an intersection.
+                    if out in pGCs and out in fGCs:
+                        addFixToSource = True
+                        fpmGCs.append(out)
+                        #evaluation =  macroStr + '.numpyArray(delayed=True)[' + str(fty) + '][' + str(ftx) + '][' + str(index)+']'
+                        evaluation = "op('/project1/stage/dmxChannels')[1,str('" + fName + "'+'_'+'"+out+"')]"
+                        #print(evaluation)
+                        #print(eval(evaluation))
+                        GCtoRender_table["'"+out+"'","'"+fName+"'"] = evaluation
+                        chanNames_table[fName+ "_" + out, "'Values'"] = evaluation
+                    else:
+                        fpmGCs.append("")
 
-                    #this table should be made when calculating each fixture's GCs
-                    #and should feed to an eval table
-                    #which should feed to the stage display
-                    #and join with the table of other relevant vals to be passed to the geom instances
-    
+                if addFixToSource == True:
+                    pgSourceTable.appendRow([fName, *[gc for gc in fpmGCs],ftx,fty])
+                    #if we have common GCs, add row to source table of pixelGenerator
+                    #this is sloppy. I need to recode this whole section.
+                    #basically, if there's a common channel, see if we've added this fixture to the source already
+                    #If we haven't add it n
+
+                            
+                        
+
     return
      
+
+
+
 
