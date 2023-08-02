@@ -1,4 +1,4 @@
-# LDiy 0.3
+# LDiy 0.4
 An open source lighting desk and previz software. Powered by Touchdesigner.<br>
 Designed to cut client task time by over 50% compared to other leading products like GrandMA, Chauvet, and ChamSys. <br>
 Intuitive, accessible, and hardware agnostic.<br>
