@@ -1,0 +1,82 @@
+s
+# Function to combine Group, Fixture and Projector tables into StageHierarchy
+def combine_tables():
+    print('running combine_tables')
+    # Get Table DATs
+    group_table = op('/project1/stage/Groups')
+    fixture_table = op('/project1/stage/Fixtures')
+    
+    #projector_table = op('project1/stage/Projectors') # Uncomment if you want to use the Projectors table
+    # Create StageHierarchy table if it doesn't exist
+    if not op('/project1/stage/StageHierarchy'):
+        print('no stageHeirarchy found')
+        op('stageCont').create("tableDAT", 'StageHierarchy')
+
+    stage_table = op('/project1/stage/StageHierarchy')
+	
+    # Clear the table
+    stage_table.clear()
+
+    # Store fixtures that have been added
+    added_fixtures = []
+    
+
+
+    # New Plan!
+    # generate two arrays; one for name and one for path
+    # for each group, the path will be /groupName
+    # for each fixture owned by a group, the path will be /groupName/fixtureName
+    # for each fixture,  the path will be /fixtureName
+    pathArray = []
+    nameArray = []
+
+
+    
+    # Iterate over groups
+    for group_col in range(1, group_table.numCols):
+        thisGroup = group_table[0, group_col].val
+        # group_col is a number
+        # add group to Arrays
+        nameArray.append(thisGroup)
+        pathArray.append("/" + thisGroup)
+
+
+
+        # Now we add the group's fixtures to our arrays.
+        # Each group refers to (a string of) an array of fixtures
+        # Convert arraryString of groupfixtures to an actual array
+        arrString = group_table[1, group_col].val
+
+        # Remove the surrounding square brackets
+        arrString = arrString[1:-1]
+        
+        # Split the string by comma and strip any leading/trailing spaces
+        elements = [s.strip().replace("'","") for s in arrString.split(',')]
+        #print(elements)
+        
+        # Record added from this group
+        for index,fixture in enumerate(elements):
+            added_fixtures.append(fixture)
+            nameArray.append(fixture)
+            pathArray.append("/" + thisGroup + "/" + fixture)
+
+
+        #--------------------------------------    
+        # Append the group name & fixtures to stage_table
+
+            
+            
+            
+
+    # Add remaining fixtures to stage_table
+    for fixture_col in range(1, fixture_table.numCols):
+        fixture = fixture_table[0, fixture_col].val
+        if fixture not in added_fixtures:
+            #print("!")
+            pathArray.append("/" + fixture)
+            nameArray.append(fixture)
+                
+    stage_table.appendCol(["path", *pathArray])
+    stage_table.appendCol(["objects", *nameArray])
+    return
+           
