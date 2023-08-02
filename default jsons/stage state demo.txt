@@ -109,6 +109,43 @@
                 "children": ""
             }
         },
+        "geyser": {
+            "type": "fixture",
+            "id": {
+                "deviceID": 1001,
+                "fixtureLibraryID": "f_004"
+            },
+            "general": {
+                "name": "geyser",
+                "tx": 0,
+                "ty": 0,
+                "tz": 0,
+                "rx": 0,
+                "ry": 0,
+                "rz": 0,
+                "sx": 1,
+                "sy": 1,
+                "sz": 1,
+                "uniformScale": 1,
+                "visible": true,
+                "locked": false
+            },
+            "gcRouting": {
+                "0": "r",
+                "1": "g",
+                "2": "b",
+                "3": "a"
+            },
+            "address": {
+                "channel": 200,
+                "universe": 1
+            },
+            "relationships": {
+                "parents": "",
+                "children": ""
+            }
+        },
+        
         "group0": {
             "type": "group",
             "id": {
@@ -134,14 +171,14 @@
                 "children": "fixture0"
             }
         },
-        "projector0": {
+        "RGB": {
             "type": "projector",
             "id": {
                 "deviceID": 1001,
                 "projectorLibraryID": "p_001"
             },
             "general": {
-                "name": "projector0",
+                "name": "RGB",
                 "tx": 0,
                 "ty": 0,
                 "tz": 0,
@@ -166,7 +203,7 @@
                 "unvierse": 1
             },
             "relationships": {
-                "macros": "m_004",
+                "macros": "m_001",
                 "fixtures": "fixture0 fixture1 fixture2 fixture3 fixture4 fixture5 fixture6 fixture7 mover0 mover1 mover2 mover3"
             }
         },
@@ -422,14 +459,14 @@
                 "children": ""
             }
         },
-        "projector1": {
+        "MasterDimmer": {
             "type": "projector",
             "id": {
                 "deviceID": 1001,
                 "projectorLibraryID": "p_001"
             },
             "general": {
-                "name": "projector1",
+                "name": "MasterDimmer",
                 "tx": 0,
                 "ty": 0,
                 "tz": 0,
@@ -454,7 +491,7 @@
                 "unvierse": 1
             },
             "relationships": {
-                "macros": "m_003",
+                "macros": "m_008",
                 "fixtures": "fixture0 fixture1 fixture2 fixture3 fixture4 fixture5 fixture6 fixture7 mover0 mover1 mover2 mover3"
             }
         },
@@ -602,14 +639,14 @@
                 "children": ""
             }
         },
-        "ProjectorPT": {
+        "PanTilt": {
             "type": "projector",
             "id": {
                 "deviceID": "1001",
                 "projectorLibraryID": "p_001"
             },
             "general": {
-                "name": "ProjectorPT",
+                "name": "PanTilt",
                 "tx": 0.0,
                 "ty": 0.0,
                 "tz": 0.0,
@@ -634,7 +671,7 @@
                 "universe": 1
             },
             "relationships": {
-                "macros": "m_008",
+                "macros": "m_100",
                 "fixtures": "mover0 mover1 mover2 mover3"
             }
         }

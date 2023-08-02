@@ -255,10 +255,13 @@ def extractProjectors():
             mOut2 = macro_library_table[mRef,'map_2'].val
             mOut3 = macro_library_table[mRef,'map_3'].val
             mOuts = [mOut0, mOut1, mOut2, mOut3]
-
+            print(macroName)
+            print(macroOp)
+            
             #Create new pixelGenerator
             newPGen = macroLib.loadTox(tdToxPath_pixelGen)
             newPGen.name = proj + "_" + mRef
+            print(newPGen.name)
             if util_table['general_pixelGenerators','_UTIL_'] == "":
                 util_table['general_pixelGenerators','_UTIL_'] = proj + '_' + mRef
             else:
