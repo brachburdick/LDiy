@@ -24,9 +24,12 @@ body, button{
 }
 
 #stagepage {
-    display: flex;
-    align-items: center;  /* vertically aligns the children in the middle */
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Adjust this if you want the container to take the full viewport height */
+}
 
 
 

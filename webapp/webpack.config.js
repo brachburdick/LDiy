@@ -11,7 +11,7 @@ const stylesHandler = isProduction
 
 
 const config = {
-    entry: ['./client/index.jsx'],
+    entry: ['./client/index.tsx'],
     output: {
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/'
@@ -32,10 +32,10 @@ const config = {
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/,
-                exclude: /(node_modules|bower_components)/,
-                loader: 'babel-loader',
-                options: { presets: ['@babel/env','@babel/preset-react'] },
+                test: /\.(ts|tsx)$/,
+                loader: 'ts-loader',
+                exclude: /node_modules/,
+                // options: { presets: ['@babel/env','@babel/preset-react'] },
               },
             {
                 test: /\.css$/i,
@@ -53,13 +53,16 @@ const config = {
             // Add your rules for custom modules here
             // Learn more about loaders from https://webpack.js.org/loaders/
         ],
-    },
+    },  
     resolve: {
-        extensions: [".jsx", ".js", "..."],
+        // Add `.ts` and `.tsx` as a resolvable extension.
+        extensions: ['.ts', '.tsx', '.js', '.json'] // ensure .ts and .tsx are included
       },
+   
 };
 
 module.exports = () => {
+   
     if (isProduction) {
         config.mode = 'production';
         config.plugins.push(new MiniCssExtractPlugin());
