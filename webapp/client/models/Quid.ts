@@ -9,7 +9,9 @@ export class Quid{
     id:string;
     name:string;
     relationships: null | { [key: string]: string[] } = null;
-
+    tx: number;
+    ty: number;
+    tz: number;
 
     constructor(id : string,name:string){
         this.id = id;
@@ -34,6 +36,9 @@ export class QuidCollection<T extends Quid>{
     category: new (id:string, name:string) => T ;
     allIds:null | string[] = null;
     quantity: number;
+    tx: number;
+    ty: number;
+    tz: number;
     
     //instantiating a new collection requires a class and an optional quidDictionary
     constructor(categoryClass: new(id:string, name:string) => T, quids: null|string[] = null){

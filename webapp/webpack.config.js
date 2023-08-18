@@ -42,10 +42,14 @@ const config = {
                 use: [ stylesHandler, 'css-loader'],
             },
             {
-                test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
+                test: /\.(mov|mp4|eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
                 type: 'asset',
+                  
             },
+            
+
             // {
+            //{
             //     test: /\.(jpg|jpeg|png|gif)$/,
             //     use: ['file-loader']
             //   }
@@ -58,6 +62,8 @@ const config = {
         // Add `.ts` and `.tsx` as a resolvable extension.
         extensions: ['.ts', '.tsx', '.js', '.json'] // ensure .ts and .tsx are included
       },
+
+      
    
 };
 
