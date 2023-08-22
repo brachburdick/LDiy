@@ -81,6 +81,7 @@ export class QuidCollection<T extends Quid>{
         
         for (const quid in quids) {
             const thisQuid = quids[quid]
+            console.log('creating new quid with name', quid.name)
             byId[quid] = new categoryClass(quid, quid)
             idArr.push(quid);
         }

@@ -32,7 +32,7 @@ const P5Stage = () => {
           p.setup = () => {
             console.log('Setup')
             p.createCanvas(STAGE_WIDTH,STAGE_HEIGHT).parent(canvasRef.current!);
-            video = p.createVideo("/media/v1.mov")
+            video = p.createVideo("/assets/v2.mp4")
             // video.hide();
           };
 
@@ -40,19 +40,19 @@ const P5Stage = () => {
           p.draw = () => {
             p.image(video,0,0);
 
-            // p.background(10, 10); // translucent background (creates trails)
+             p.background(10, 10); // translucent background (creates trails)
             const allFixtures = state?.stage?.fixtures?.byId
-            // for(let each in allFixtures){
-            //   const x = allFixtures[each].tx
-            //   const y =  STAGE_HEIGHT-allFixtures[each].ty
-            //   const [R,G,B,A] = video.get(x,y);
+            for(let each in allFixtures){
+              const x = allFixtures[each].tx
+              const y =  STAGE_HEIGHT-allFixtures[each].ty
+              const [R,G,B,A] = video.get(x,y);
 
               
-            //   p.push(); // Start a new drawing state
-            //   p.circle(x,y,DIAM);
-            //   p.fill(R,G,B,A)
-            //   p.pop(); // Restore the original drawing state
-            // }
+              p.push(); // Start a new drawing state
+              p.circle(x,y,DIAM);
+              p.fill(R,G,B,A)
+              p.pop(); // Restore the original drawing state
+            }
 
           };
         };
@@ -76,11 +76,11 @@ const P5Stage = () => {
     return (
       <>
         <div ref={canvasRef}></div>
-        {/* <video ref={videoRef} src="/media/v1.mov"></video> */}
-        <video width="320" height="240" autoPlay >
-                <source src="/media/v1.mov" type="video/quicktime"  />
+        <video ref={videoRef} src="/assets/v2.mp4"></video>
+        {/* <video width="600" height="300" autoPlay loop>
+                <source src="/assets/v2.mp4" type="video/mp4"  />
                 Your browser does not support the video tag.
-            </video>
+            </video> */}
         <button onClick = {() => handleClick()}> BUTTON</button>
 
       </>

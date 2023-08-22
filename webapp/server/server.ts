@@ -19,18 +19,16 @@ app.use(express.static(path.join(__dirname,'..','dist')));
 app.get('/', (req,res)=>{
     res.sendFile(path.join(__dirname, 'index.html'))
 })
-app.get('/media/:videoname',  (req, res) => {
-  console.log('Weve hit the right path')
-  const videoName = req.params.videoname;
 
-  // Ensure you handle potential security risks such as directory traversal
-  // and only allow expected characters in the video name.
-  if (!videoName.match(/^[a-zA-Z0-9._-]+\.mov$/)) {
-      return res.status(400).send('Invalid video name');
-  }
+app.get('/assets/:imageName', (req, res) => {
+  const imageName = req.params.imageName;
+  console.log('inside image send route')
+  res.sendFile(path.join(__dirname, '..', 'assets', imageName));
+});
 
-  const videoPath = path.join(__dirname, '..','assets', videoName);
-  console.log(videoPath)
+app.get('/assets/:videoName', (req, res) => {
+  const videoName = req.params.videoName;
+  const videoPath = path.join(__dirname, '..', 'assets', videoName);
   res.type('video/quicktime');
   res.sendFile(videoPath);
 });

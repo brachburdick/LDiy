@@ -8,17 +8,17 @@ import Fixture from '../../models/Fixture'
 //some shoe-in setup
 let stageProjectors = new QuidCollection(Projector, ['P1'])
 stageProjectors.add([new Projector('p_001', 'projector1')])
-console.log(JSON.stringify(stageProjectors))
+console.log('stageProjectors', JSON.stringify(stageProjectors))
 let stageGroups = new QuidCollection(Group, ['g_001'])
 stageGroups.add([new Group('g_001','group1')])
-console.log(JSON.stringify(stageGroups))
+console.log('stageGroups', JSON.stringify(stageGroups))
 
 let defaultFixtures = [];
 for(let i = 1; i<4; i++){
   defaultFixtures.push(new Fixture('f_00'+String(i),"fixture"+i))
 }
 let stageFixtures = new QuidCollection(Fixture, defaultFixtures)
-console.log(JSON.stringify(stageFixtures))
+console.log('stageFixtures', JSON.stringify(stageFixtures))
 
 export type initialState = {
   projectors: QuidCollection<Projector>;
