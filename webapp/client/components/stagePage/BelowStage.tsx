@@ -1,40 +1,34 @@
 //import { json } from 'express';
 import React from 'react';
-
+import {useSelector} from 'react-redux';
+import { QuidCollection } from '../../models/Quid';
+import {initialState} from '../../redux/reducers/stageReducer'
 const BelowStage = () => {
+const state:any= useSelector((state)=> state);
+console.log(state, Object.keys(state))
+const projectors:any = state.stage.projectors.byId;
+const groups:any = state.stage.groups.byId;
+const fixtures:any = state.stage.fixtures.byId;
+const pList = [];
+const fList = [];
+const gList = [];
 
-const fetchWithAsync = async(path) =>{
-  const response = await fetch(`http://localhost:3333${path}`);
-  if(!response.ok){
-    throw new Error('network response not ok')
-  }
-  return await response.json()
+for (let each in projectors){
+
+  pList.push(<div>{JSON.stringify(projectors[each])}</div>)
+}
+for (let each in fixtures){
+  fList.push(<div>{JSON.stringify(fixtures[each])}</div>)
+}
+for (let each in groups){
+  gList.push(<div>{JSON.stringify(groups[each])}</div>)
 }
 
-// const handleClick = () => {
-  
-// }
-
-
-// const handleClick =  async (path) =>{
-//   console.log('handleClick')
-
-//   try{
-//     const data = await fetchWithAsync(path);
-//     console.log('data from server: ' , data)
-//   } catch (error) {
-//     console.log('problem: ', error.message)
-//   }
-// }
-
-// const handleOtherClick = async (path) =>{
-//   const response =  await fetch(`http://localhost:3333${path}`)
-//   console.log('post other handleClick response')
-//   console.log(response)
-// }
-
     return (    
-    <div>
+    <div id = 'belowstage'>THIS IS BELOW STAGE
+      {pList}
+      {gList}
+      {fList}
         {/* <button id = 'testButton' onClick={() => handleOtherClick('/')}>Add Fixture</button>
         <button id = 'testButton' onClick={() => handleClick('/contact')}>Add Group</button>
         <button id = 'testButton' onClick={() => handleClick('/retrieve')}>Add Animation</button>

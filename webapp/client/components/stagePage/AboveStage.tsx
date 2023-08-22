@@ -1,5 +1,6 @@
 //import { json } from 'express';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const AboveStage = () => {
 
@@ -30,10 +31,12 @@ const handleOtherClick = async (path) =>{
 
     return (    
     <div>
-        <button id = 'testButton' onClick={() => handleOtherClick('/')}>Add Fixture</button>
-        <button id = 'testButton' onClick={() => handleClick('/contact')}>Add Group</button>
-        <button id = 'testButton' onClick={() => handleClick('/retrieve')}>Add Animation</button>
-        <button id = 'testButton' onClick={() => handleClick('/disconnect')}>Reset Stage</button>
+        <Link className="nav-button" to="/AddFixture">Add Fixture</Link>
+
+        {/* <button id = 'testButton' onClick={() => handleClick('/AddFixture')}>Add Fixture</button> */}
+        <button id = 'testButton' onClick={() => handleClick('/AddGroup')}>Add Group</button>
+        <button id = 'testButton' onClick={() => handleClick('/AddProjector')}>Add Projector</button>
+        <button id = 'testButton' onClick={() => handleClick('/Reset')}>Reset Stage</button>
       </div>)
 }
 

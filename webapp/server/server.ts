@@ -1,9 +1,10 @@
+// import { dir } from "console";
+
 const express = require('express');
 const app = express();
 const cors = require('cors');
 const path = require('path');
 const PORT = 3333;
-
 const {json} = require('express')
 app.use(cors());
 const db = require('./models/entryModel.js');
@@ -11,15 +12,35 @@ const db = require('./models/entryModel.js');
 //const { entryController } = require('./controllers/entryController.js');
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-
-console.log(path.join(__dirname,'..','dist'))
 app.use(express.static(path.join(__dirname,'..','dist')));
+// app.use('/media', express.static(path.join(__dirname,'..','assets')))
+
+
 app.get('/', (req,res)=>{
     res.sendFile(path.join(__dirname, 'index.html'))
 })
+app.get('/media/:videoname',  (req, res) => {
+  console.log('Weve hit the right path')
+  const videoName = req.params.videoname;
+
+  // Ensure you handle potential security risks such as directory traversal
+  // and only allow expected characters in the video name.
+  if (!videoName.match(/^[a-zA-Z0-9._-]+\.mov$/)) {
+      return res.status(400).send('Invalid video name');
+  }
+
+  const videoPath = path.join(__dirname, '..','assets', videoName);
+  console.log(videoPath)
+  res.type('video/quicktime');
+  res.sendFile(videoPath);
+});
+
+
 //app.get('/',(req,res)=>res.status(200).sendFile(path.resolve(__dirname, '../client/index.html')));
-app.get('/contact',
-       (req,res)=>res.status(200).json({'test':'test'}))
+app.get('/media',
+       (req,res)=>{
+        console.log('red horiz path')
+        return (res.status(200).json({'test':'test'}))})
 
 app.get('/retrieve', (req,res)=>{
     console.log('@ /retrieve')
@@ -34,8 +55,10 @@ app.get('/retrieve', (req,res)=>{
     .catch(()=>({log:'error',message:'error In /retrieve', status:500}));
 })
 // //route error handler
-
-app.get('*', (req,res)=>res.status(404).json({hello:'we\'ve been trying to reach you about your car\'s extended warranty'}));
+app.use((req, res) => {
+  res.status(404).send('Sorry, we cannot find that!');
+});
+// app.get('*', (req,res)=>res.status(404).json({hello:'we\'ve been trying to reach you about your car\'s extended warranty'}));
 //global error handler
 app.use((err, req, res, next)=>{
 

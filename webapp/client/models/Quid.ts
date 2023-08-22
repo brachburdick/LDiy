@@ -3,27 +3,59 @@
 
 import { initGenerator } from "@webpack-cli/generators";
 import internal from "stream";
-
+interface QuidConstructor {
+    new (arg1: Quid | number, arg2?: string): Quid;
+    createInstance(source: Quid): Quid;
+  }
 
 export class Quid{
     id:string;
     name:string;
     relationships: null | { [key: string]: string[] } = null;
-    tx: number;
-    ty: number;
-    tz: number;
+    tx: number = 0;
+    ty: number = 0;
+    tz: number = 0;
 
-    constructor(id : string,name:string){
-        this.id = id;
-        this.name = name;
-        this.relationships = {}; //should be an object with reference to quids
+    constructor(arg1, arg2 = null) {
+        if (arg1 instanceof Quid) {
+          // If the first argument is an instance of Quid, we use its properties
+          for (let key in arg1){
+                this[key] = arg1[key];
+          }
+
+          // ... copy other properties
+        } else {
+          // Otherwise, we treat arg1 as id and arg2 as name
+          this.id = arg1;
+          this.name = arg2;
+            console.log('this ', this, ' should have name ', arg2)
+        }
     }
+    static createInstance(source: Quid): Quid {
+        return new this(source);
+      }
     
+      setName(newName: string): Quid {
+        const newQuid = (this.constructor as QuidConstructor).createInstance(this);
+        newQuid.name = newName;
+        return newQuid;
+      }
+      
+    move(newTx:number|null = null, newTy:number|null = null, newTz:number|null = null):Quid {
+        let updatedQuid = (this.constructor as QuidConstructor).createInstance(this);
+        updatedQuid.tx = newTx;
+        updatedQuid.ty = newTy;
+        updatedQuid.tz = newTz;
+        return updatedQuid;
+    }
+
+
     relate(){
 
     }
-
 }
+
+
 
 type QuidDictionary<T> = null | { [key: string]: T };
 

@@ -19,3 +19,12 @@ export const DisownQuidAC = location => ({
   type: types.DISOWN_QUID,
   payload:location
 });
+
+export const selectThingAC = thing => ({
+  type: types.SELECT_THING,
+  payload: thing,
+});
+export const moveAC = quid =>({
+  type: types.MOVE,
+  payload: quid
+})

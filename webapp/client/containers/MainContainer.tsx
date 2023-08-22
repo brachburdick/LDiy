@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import '../styles.css'
 import StagePage from '../components/StagePage'
 import Home from '../components/HomePage';
+import QuidAddition from '../components/QuidAddition';
 const MainContainer = () => {
   // add pertinent state here
  
@@ -11,7 +12,7 @@ const MainContainer = () => {
         <Routes>
             <Route path="/"element={<Home/>} />
             <Route path="/stage" element={<StagePage/>} />
-            {/* <Route path="/contact" component={ContactPage} /> */}
+            <Route path="/AddFixture" element={<QuidAddition/>} />
             {/* Add more routes as needed */}
         </Routes>
        

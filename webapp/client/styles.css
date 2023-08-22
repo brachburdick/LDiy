@@ -1,18 +1,21 @@
 #topmostLevel {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif; /* Just an example; use your preferred font-family */
-    background: url('./webAppAssets/purpleSpots.jpg') no-repeat center center fixed; 
+    /* background: url('./webAppAssets/purpleSpots.jpg') no-repeat center center fixed;  */
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
 }
 body, button{
-  background: url('./webAppAssets/purpleSpots.jpg');
+  background: url('../assets/purpleSpots.jpg');
   padding: 20px 20px 100px;
   margin: 50px;
   position: relative;
 
+}
+#belowstage{
+  color: white;
 }
 #headerBox{
   display: flex;

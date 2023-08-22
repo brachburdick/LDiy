@@ -6,16 +6,25 @@ import Group from '../../models/Group'
 import Fixture from '../../models/Fixture'
 
 //some shoe-in setup
-let stageProjectors = new QuidCollection(Projector, ['p_001'])
+let stageProjectors = new QuidCollection(Projector, ['P1'])
+stageProjectors.add([new Projector('p_001', 'projector1')])
+console.log(JSON.stringify(stageProjectors))
 let stageGroups = new QuidCollection(Group, ['g_001'])
-let defaultFixtures = ['f_001', 'f_002', 'f_003']
-let stageFixtures = new QuidCollection(Fixture, defaultFixtures)
+stageGroups.add([new Group('g_001','group1')])
+console.log(JSON.stringify(stageGroups))
 
-type initialState = {
+let defaultFixtures = [];
+for(let i = 1; i<4; i++){
+  defaultFixtures.push(new Fixture('f_00'+String(i),"fixture"+i))
+}
+let stageFixtures = new QuidCollection(Fixture, defaultFixtures)
+console.log(JSON.stringify(stageFixtures))
+
+export type initialState = {
   projectors: QuidCollection<Projector>;
   groups: QuidCollection<Group>;
   fixtures: QuidCollection<Fixture>;
-
+  currentSelection: QuidCollection<any> | Quid;
 }
 
 const initialState = { 
@@ -29,7 +38,7 @@ const stageReducer = (state = initialState, action) => {
   console.log('REDUCER', action);
   switch (action.type) {
     case types.ADD_QUID_TO_COLLECTION:
-      
+
       return {
         ...state
       };
@@ -49,6 +58,14 @@ const stageReducer = (state = initialState, action) => {
       };
 
     case types.DISOWN_QUID: 
+    return {
+      ...state
+    };
+    case types.SELECT_THING: 
+    return {
+      ...state
+    };
+    case types.MOVE: 
     return {
       ...state
     };

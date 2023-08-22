@@ -1,7 +1,7 @@
 #topmostLevel {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif; /* Just an example; use your preferred font-family */
-    background: url(/8941dcd6d58a143df440.jpg) no-repeat center center fixed; 
+    /* background: url('./webAppAssets/purpleSpots.jpg') no-repeat center center fixed;  */
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -13,6 +13,9 @@ body, button{
   margin: 50px;
   position: relative;
 
+}
+#belowstage{
+  color: white;
 }
 #headerBox{
   display: flex;
