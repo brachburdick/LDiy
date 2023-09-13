@@ -1,9 +1,12 @@
 # LDiy 0.4
-An open source lighting desk and previz software. Powered by Touchdesigner.<br>
+An open source lighting desk and previz software.<br>
 Designed to cut client task time by over 50% compared to other leading products like GrandMA, Chauvet, and ChamSys. <br>
 Intuitive, accessible, and hardware agnostic.<br>
 Inspired by EnviralDesign's GeoPix and OpenLightingFixtures.<br>
 A 12South Entertainment product.<br>
+
+# Current Status
+Shifting away from Touchdesigner now that I've got the bones down. Trying for webapp, but currently the DMX library I'm using relies on Node core modules. If I have time I'm going to try to fork it and adapt it for browser use. If that doesn't work I'll just bundle with Electron. Currently the webapp demonstrates only the most barebones of functionality, but it does demonstrate the utility of taking a hw - agnostic approach.
 
 
 # The Vision
