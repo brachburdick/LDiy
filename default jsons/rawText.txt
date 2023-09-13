@@ -1,0 +1,25 @@
+Attributes	fixture0	geyser	fixture1	fixture2	fixture3	fixture4	fixture5	fixture6	fixture7	mover0	mover1	mover2	mover3
+_type	fixture	fixture	fixture	fixture	fixture	fixture	fixture	fixture	fixture	fixture	fixture	fixture	fixture
+id_deviceID	1001	1001	1001	1001	1001	1001	1001	1001	1001	1001	1001	1001	1001
+id_fixtureLibraryID	f_001	f_004	f_001	f_001	f_001	f_001	f_001	f_001	f_001	f_002	f_002	f_002	f_002
+general_name	fixture0	geyser	fixture1	fixture2	fixture3	fixture4	fixture5	fixture6	fixture7	mover0	mover1	mover2	mover3
+general_tx	-84	0	-60.0	-36.0	-12.0	12.0	36.0	60.0	84.0	-100.0	-35.0	35.0	100.0
+general_ty	0	0	20.0	30.0	35.0	35.0	30.0	20.0	0.0	55.0	75.0	75.0	55.0
+general_tz	0	0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+general_rx	0	0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+general_ry	0	0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+general_rz	0	0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+general_sx	1	1	1.0	1.0	1.0	1.0	1.0	1.0	1.0	1.0	1.0	1.0	1.0
+general_sy	1	1	1.0	1.0	1.0	1.0	1.0	1.0	1.0	1.0	1.0	1.0	1.0
+general_sz	1	1	1.0	1.0	1.0	1.0	1.0	1.0	1.0	1.0	1.0	1.0	1.0
+general_uniformScale	1	1	1.0	1.0	1.0	1.0	1.0	1.0	1.0	1.0	1.0	1.0	1.0
+general_visible	True	True	True	True	True	True	True	True	True	True	True	True	True
+general_locked	False	False	False	False	False	False	False	False	False	False	False	False	False
+gcRouting_0	r	r	r	r	r	r	r	r	r	r	r	r	r
+gcRouting_1	g	g	g	g	g	g	g	g	g	g	g	g	g
+gcRouting_2	b	b	b	b	b	b	b	b	b	b	b	b	b
+gcRouting_3	a	a	a	a	a	a	a	a	a	a	a	a	a
+address_channel	1	200	9	17	25	33	41	49	57	65	82	99	116
+address_universe	1	1	1	1	1	1	1	1	1	1	1	1	1
+relationships_parents													
+relationships_children													

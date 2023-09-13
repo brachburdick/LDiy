@@ -3,6 +3,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const NodePolyfillPlugin = require("node-polyfill-webpack-plugin")
 
 const isProduction = process.env.NODE_ENV == "production";
 const stylesHandler = isProduction
@@ -20,8 +21,9 @@ const config = {
         open: true,
         host: "localhost",
       },
-    
+      
     plugins: [
+        // new NodePolyfillPlugin(),
         new HtmlWebpackPlugin({
             template: './client/index.html',
         }),
@@ -47,20 +49,17 @@ const config = {
                   
             },
             
-
-            // {
-            //{
-            //     test: /\.(jpg|jpeg|png|gif)$/,
-            //     use: ['file-loader']
-            //   }
-
-            // Add your rules for custom modules here
-            // Learn more about loaders from https://webpack.js.org/loaders/
         ],
     },  
     resolve: {
-        // Add `.ts` and `.tsx` as a resolvable extension.
-        extensions: ['.ts', '.tsx', '.js', '.json'] // ensure .ts and .tsx are included
+        extensions: ['.ts', '.tsx', '.js', '.json'], // ensure .ts and .tsx are included
+        fallback: {
+            "stream": require.resolve("stream-browserify"),
+            "crypto": require.resolve("crypto-browserify"),
+            "zlib": require.resolve("browserify-zlib"),
+            "net": false,
+            "tls": false,
+          },
       },
 
       
@@ -68,6 +67,7 @@ const config = {
 };
 
 module.exports = () => {
+
    
     if (isProduction) {
         config.mode = 'production';

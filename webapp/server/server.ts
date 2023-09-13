@@ -4,10 +4,19 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const path = require('path');
-const PORT = 3333;
+const PORT = 8080;
 const {json} = require('express')
 app.use(cors());
 const db = require('./models/entryModel.js');
+// At the top of your server file
+const { DMX, EnttecUSBDMXProDriver } = require("dmx-ts");
+const dmx = new DMX();
+let universe;
+
+// You might need to replace this with the actual path to your DMX USB device
+const serialPort = '/dev/tty.usbserial-EN286139';
+
+
 
 //const { entryController } = require('./controllers/entryController.js');
 app.use(express.json());
@@ -19,6 +28,58 @@ app.use(express.static(path.join(__dirname,'..','dist')));
 app.get('/', (req,res)=>{
     res.sendFile(path.join(__dirname, 'index.html'))
 })
+app.post('/dmx/connect', async (req, res) => {
+  console.log('inside dmx/connect')
+  try {
+    universe = await dmx.addUniverse('demo', new EnttecUSBDMXProDriver(serialPort));
+    res.status(200).send({ message: `Connected to DMX interface at ${serialPort}` });
+
+  } catch (err) {
+    console.error('Failed to connect:', err);
+    res.status(500).send('Failed to connect to DMX interface');
+  }
+});
+app.post('/dmx/on', async (req, res) => {
+  try {
+    const channelValues = req.body.outgoingUniverse;
+    // universe.updateAll(250)
+    universe.update(channelValues);
+    // universe.updateAll(250)
+    // for (const [channel, value] of Object.entries(channelValues)) {
+    //   console.log(channel,value)
+    //   universe.update({channel: value});
+    // }
+
+    // console.log('Channels updated',channelValues);
+    res.status(200).send('Channels updated');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Failed to update channels');
+  }
+});
+
+app.post('/dmx/off', async (req, res) => {
+  try {
+    universe.updateAll(0);
+    console.log('off');
+    res.status(200).send('Turned off');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Failed to turn off');
+  }
+});
+
+app.post('/dmx/disconnect', async (req, res) => {
+  try {
+    universe.close();
+    res.status(200).send('Disconnected from DMX interface');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Failed to disconnect from DMX interface');
+  }
+});
+
+
 
 app.get('/assets/:imageName', (req, res) => {
   const imageName = req.params.imageName;

@@ -3,12 +3,9 @@ class Fixture extends Quid{
     tx : number;
     ty: number;
     tz: number
-    constructor(id,name){
-        super(id,name)
-        this.tx = 0;
-        this.ty = 0;
-        this.tz = 0
-    }
+    constructor(id,name, relationships, tx, ty, tz){
+        super(id,name, relationships, tx, ty, tz)
+     }
     sharedMethod(){
 
     }

@@ -9,7 +9,7 @@ const Footer = () => {
  
   return(
     <div className="footer">
-      {showVideo ? (
+      {/* {showVideo ? (
         <video width="320" height="240" autoPlay loop>
           <source src="/assets/v2.mp4" type="video/mp4" />
             Your browser does not support the video tag.
@@ -25,7 +25,7 @@ const Footer = () => {
         </video>
 
       ) : null}
-      {!showVideo ? <button onClick={() => setShowVideo(true)}>Load Video</button> : null}
+      {!showVideo ? <button onClick={() => setShowVideo(true)}>Load Video</button> : null} */}
     </div>
   );
 }

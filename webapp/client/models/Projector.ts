@@ -1,11 +1,9 @@
 import {Quid, QuidCollection} from './Quid'
 class Projector extends Quid{
-    constructor(id,name){
-       super(id,name)
+    constructor(id,name, relationships, tx, ty, tz){
+       super(id,name, relationships, tx, ty, tz)
     }
-    sharedMethod(){
-
-    }
+    
 
 }
 
