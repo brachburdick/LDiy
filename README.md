@@ -22,6 +22,7 @@ Current version of the application runs on TouchDesigner v2021.16410.<br>
 [and a 3MB download for the same vid](https://github.com/brachburdick/LDiy/assets/107267496/66988b7e-5f03-436c-af98-69d9b13f3159)
 
 
+![image](https://github.com/brachburdick/LDiy/assets/107267496/a56dfd0d-c672-4591-9344-4e28410eb480)
 
 # Related Links:
 https://12southband.com/<br>
