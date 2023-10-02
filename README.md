@@ -18,8 +18,8 @@ A comprehensive tutorial will be added soon.<br>
 # TouchDesigner:
 Current version of the application runs on TouchDesigner v2021.16410.<br>
 
-Here's a demo:
-https://github.com/brachburdick/LDiy/assets/107267496/66988b7e-5f03-436c-af98-69d9b13f3159
+[Here's a demo on imgur](https://imgur.com/a/mnNlS3d)
+[And a 3MB download for the same vid](https://github.com/brachburdick/LDiy/assets/107267496/66988b7e-5f03-436c-af98-69d9b13f3159)
 
 
 
