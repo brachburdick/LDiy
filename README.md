@@ -2,7 +2,7 @@
 An open source lighting desk and previz software.<br>
 Designed to be accessible by anyone. No LD experience required to get started. <br>
 Intuitive, accessible, and hardware agnostic.<br>
-Inspired by EnviralDesign's [GeoPix](https://www.geopix.io/) & the [Open Lighting Project](https://www.openlighting.org)/<br>
+Inspired by EnviralDesign's [GeoPix](https://www.geopix.io/) & the [Open Lighting Project](https://www.openlighting.org).<br>
 A [12South Entertainment](https://12southband.com) product.<br>
 
 # Current Status
