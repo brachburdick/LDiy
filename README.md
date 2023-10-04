@@ -6,7 +6,7 @@ Inspired by EnviralDesign's [GeoPix](https://www.geopix.io/) & the [Open Lightin
 A [12South Entertainment](https://12southband.com) product.<br>
 
 # Current Status
-The TouchDesigner-based prototype works very well. Unfortunately, users will need a TD licence (available for free!) and a decent gpu to view/interact with this prototype. Due to this inaccessibility, I've shifted focus toward a [browser-native](www.ldiy.live) alternative. The site's up & running and ready for integration with the TD version's more powerful features. I'm finalizing my browser port of [node-dmx](https://github.com/node-dmx) to include other open-source dmx interfaces. 
+The TouchDesigner-based prototype works very well. Unfortunately, users will need a TD licence ([available for free!](https://derivative.ca/download/archive)) and a decent gpu to view/interact with this prototype. Due to this inaccessibility, I've shifted focus toward a [browser-native](www.ldiy.live) alternative. The site's up & running and ready for integration with the TD version's more powerful features. I'm finalizing my browser port of [node-dmx](https://github.com/node-dmx) to include other open-source dmx interfaces. 
 
 # The Vision
 Running a stage shouldn't require years of experience.<br>
